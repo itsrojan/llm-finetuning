@@ -37,25 +37,26 @@ For each configuration, only one parameter is changed, while the others are set 
 
 ---
 
-# Task 2: Llama2 vs Mistral vs Phi-2
+### Task 2: Llama2 vs Mistral vs Phi-2
 
 When comparing the three models, Phi2, Llama2, and Mistral, it's clear that Phi2 outperforms the others based on the metrics. Phi2 has the highest scores in BLEU, Rouge-L, and BERTScore, indicating better performance in understanding and generating text. Llama2 and Mistral have significantly lower scores, suggesting they might not be as effective in these tasks.
 
 In terms of which metrics are more appropriate for comparison to human evaluation, BLEU and Rouge-L focus on the similarity of words between the model's output and a reference text, but they might not fully capture the meaning. BERTScore, on the other hand, attempts to consider the semantics, making it potentially closer to human judgment. Perplexity measures how well the model predicts text, which is different from the other metrics. Therefore, relying on multiple metrics is often the best approach to get a comprehensive understanding of a model's performance.
 
-# Task 3: Hyperparameter Testing
+### Task 3: Hyperparameter Testing
 
 Changing the hyperparameters of the Phi-2 model can affect how well the model performs on different metrics.
 
-1. **top_k**: As top_k increases from 10 to 75, the BLEU and Rouge-L scores go up and down a bit, but they don't have a clear trend. However, the BERTScore and Perplexity change more noticeably. For example, when top_k is 75, the BERTScore goes down, and Perplexity goes up a lot, which might mean the text is less similar to the reference and more uncertain.
+- **top_k**: When top_k is increased from 10 to 75, there isn't a consistent trend in the metrics. For example, the BLEU score goes up and down, showing that changing top_k doesn't always lead to better or worse performance. This suggests that the right value for top_k depends on the specific task or text being generated.
 
-2. **beam_size**: Changing the beam_size from 2 to 8 shows that a beam_size of 4 gives the best BLEU (42.57) and Rouge-L (0.60) scores. This means that using a beam_size of 4 might help the model make better choices when generating text. But, when the beam_size gets too big, like 8, the scores don't get much better, and sometimes they get worse.
+- **beam_size**: Increasing the beam_size from 2 to 8 shows that a beam_size of 4 gives the best BLEU and Rouge-L scores. This means that using a moderate beam_size helps the model generate better text. However, making the beam_size too big doesn't always improve results, as seen with a beam_size of 8.
 
-3. **temperature**: Adjusting the temperature from 0.25 to 1.0 shows that lower temperatures (like 0.25 and 0.5) give better BLEU and Rouge-L scores than higher temperatures (like 1.0). This might mean that lower temperatures help the model be more sure about its choices and make text that's closer to the reference.
+- **temperature**: Changing the temperature from 0.25 to 1.0 shows that lower temperatures (0.25 and 0.5) lead to better BLEU and Rouge-L scores than higher temperatures. This suggests that lower temperatures make the model more confident in its choices, leading to better text generation.
 
-It's important to find the right balance to get the best results.
+Overall, finding the best results requires testing different combinations based on the specific needs of the task.
 
-# Useful Resources Used
+### Useful Resources Used
 
 https://www.datacamp.com/tutorial/fine-tuning-llama-2
+
 https://www.kaggle.com/code/kingabzpro/fine-tuning-phi-2
